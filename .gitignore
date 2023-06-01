@@ -6,3 +6,4 @@ build
 *.gz
 *.sw*
 *.un~
+.DS_Store
