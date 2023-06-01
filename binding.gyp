@@ -1,10 +1,6 @@
 {
   "targets": [
     {
-      "target_name": "network-interface",
-      "sources": [
-        "./src/main.cpp"
-      ],
       "include_dirs": [
         "<!@(node -p \"require('node-addon-api').include\")"
       ],
@@ -17,11 +13,31 @@
       "cflags_cc!": [
         "-fno-exceptions"
       ],
-      "xcode_settings": {
-        "GCC_ENABLE_CPP_EXCEPTIONS": "YES",
-        "CLANG_CXX_LIBRARY": "libc++",
-        "MACOSX_DEPLOYMENT_TARGET": "10.7"
-      },
+      "conditions": [
+        ["OS=='mac'", {
+          "target_name": "mac",
+          "sources": [
+            "./src/main.mm"  
+          ],
+          "xcode_settings": {
+            "GCC_ENABLE_CPP_EXCEPTIONS": "YES",
+            "MACOSX_DEPLOYMENT_TARGET": "10.7",
+            "CLANG_CXX_LIBRARY": "libc++",
+            "OTHER_LDFLAGS": [
+              "-framework CoreWLAN"
+            ],
+             "OTHER_CFLAGS": [
+              "-ObjC++"
+            ]
+          }
+        }],
+        ["OS=='win'", {
+          "target_name": "win",
+          "sources": [
+            "./src/main.cpp"
+          ]
+        }]
+      ],
       "msvs_settings": {
         "VCCLCompilerTool": {
           "ExceptionHandling": 1
