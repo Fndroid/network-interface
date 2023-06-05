@@ -14,8 +14,8 @@
         "-fno-exceptions"
       ],
       "conditions": [
-        ["OS=='mac'", {
-          "target_name": "mac",
+        ["OS=='mac' and target_arch=='x64'", {
+          "target_name": "mac-x64",
           "sources": [
             "./src/main.mm"  
           ],
@@ -31,8 +31,37 @@
             ]
           }
         }],
-        ["OS=='win'", {
-          "target_name": "win",
+        ["OS=='mac' and target_arch=='arm64'", {
+          "target_name": "mac-arm64",
+          "sources": [
+            "./src/main.mm"  
+          ],
+          "xcode_settings": {
+            "GCC_ENABLE_CPP_EXCEPTIONS": "YES",
+            "MACOSX_DEPLOYMENT_TARGET": "10.7",
+            "CLANG_CXX_LIBRARY": "libc++",
+            "OTHER_LDFLAGS": [
+              "-framework CoreWLAN"
+            ],
+             "OTHER_CFLAGS": [
+              "-ObjC++"
+            ]
+          }
+        }],
+        ["OS=='win' and target_arch=='x64'", {
+          "target_name": "win-x64",
+          "sources": [
+            "./src/main.cpp"
+          ]
+        }],
+        ["OS=='win' and target_arch=='arm64'", {
+          "target_name": "win-arm64",
+          "sources": [
+            "./src/main.cpp"
+          ]
+        }],
+        ["OS=='win' and target_arch=='ia32'", {
+          "target_name": "win-ia32",
           "sources": [
             "./src/main.cpp"
           ]
