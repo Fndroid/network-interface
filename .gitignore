@@ -1,9 +1,12 @@
 node_modules
 coverage
 .nyc_output
-build
 .vscode/c_cpp_properties.json
 *.gz
 *.sw*
 *.un~
 .DS_Store
+/build/*
+!/build/Release/
+/build/Release/*
+!*.node
