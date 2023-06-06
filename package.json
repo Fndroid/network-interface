@@ -1,6 +1,6 @@
 {
   "name": "@fndroid/network-interface",
-  "version": "18.0.2",
+  "version": "18.0.3",
   "description": "Operating system network-related library for Node.js is used to obtain hardware status and network environment changes, etc.",
   "keywords": [
     "network",
